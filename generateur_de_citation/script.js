@@ -24,29 +24,29 @@ let citations = [
   ];
 //Recuperation du bouton
 let btn = document.getElementById("btn");
-//déclaration du compteur
-let a = 0;  
 //récuperation de l'id de... + Initialisation du texte
 let block = document.getElementById("blockCitation"); //..La citation
 block.textContent = citations[0][0];
 let aut = document.getElementById("auteur"); //..l'auteur
 aut.textContent = citations[0][1];
 
-btn.addEventListener('click', next);        //changement de chaque citation par une fonction
-                                            // qui incrémente le tableau avec une condition
-function next () {                          // qui le réinitialise.
-    if(a == citations.length - 1){          //Pour faire la fin de la boucle
-        a = 0;
-        block.textContent = citations[a][0];
-        aut.textContent = citations[a][1]
-    }else{
-        a++;
-        block.textContent = citations[a][0];
-        aut.textContent = citations[a][1]
-    }
-    
-    
+//déclaration du generateur de nombre aléatoire
+let dernier = 0;  
+let nombreAleatoire = 0;
+
+function genererNombreEntier(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+};
+
+ function next () {                          
+    do {
+        nombreAleatoire = genererNombreEntier(citations.length);
+      } while (nombreAleatoire == dernier)
+        
+      block.textContent = citations[nombreAleatoire][0];
+      aut.textContent   = citations[nombreAleatoire][1];
+      dernier              = nombreAleatoire;
 }
 
-
+btn.addEventListener('click', next);
 
