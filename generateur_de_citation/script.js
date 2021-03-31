@@ -49,5 +49,4 @@ function genererNombreEntier(max) {
 }
 
 btn.addEventListener('click', next);
-//comment commit
 
